@@ -49,6 +49,13 @@ export const getBarChartController = async (req, res) => {
 
         let args = {}; // Search Arguments
         if(targetMonth){
+            // validation check
+            if(targetMonth < 1 || targetMonth > 12){
+                res.status(400).send({
+                    success: false,
+                    message: "Invalid Target Month"
+                });
+            }
             args.$expr =  {
                 $eq: [{ $month: { $toDate: "$dateOfSale" } }, targetMonth]
             }

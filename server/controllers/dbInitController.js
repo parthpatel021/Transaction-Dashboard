@@ -5,6 +5,7 @@ const addToDatabase = async (transaction) => {
     try {
         const existingTransaction = await transactionModel.findOne({ id: transaction.id });
 
+        // preventing double entries
         if(!existingTransaction){
             await new transactionModel({...transaction}).save();
         }

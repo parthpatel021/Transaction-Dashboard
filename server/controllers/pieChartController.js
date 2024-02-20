@@ -6,6 +6,7 @@ export const getPieChartController = async (req, res) => {
         let args = {};
 
         if (targetMonth) {
+            // validation check
             if(targetMonth < 1 || targetMonth > 12){
                 res.status(400).send({
                     success: false,

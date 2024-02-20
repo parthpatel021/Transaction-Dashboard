@@ -4,6 +4,7 @@ import { getTransactionController } from "./controllers/transactionController.js
 import { getStatisticsController } from "./controllers/statisticsController.js";
 import { getBarChartController } from "./controllers/barChartController.js";
 import { getPieChartController } from "./controllers/pieChartController.js";
+import { getCombinedDataController } from "./controllers/combinedDataController.js";
 
 // router object
 const router = express.Router();
@@ -22,5 +23,8 @@ router.get("/bar-chart", getBarChartController);
 
 // GET pie-chart
 router.get("/pie-chart", getPieChartController);
+
+// GET pie-chart
+router.get("/combined-data", getCombinedDataController);
 
 export default router;
