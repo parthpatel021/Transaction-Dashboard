@@ -3,6 +3,7 @@ import { dbInitController } from "./controllers/dbInitController.js";
 import { getTransactionController } from "./controllers/transactionController.js";
 import { getStatisticsController } from "./controllers/statisticsController.js";
 import { getBarChartController } from "./controllers/barChartController.js";
+import { getPieChartController } from "./controllers/pieChartController.js";
 
 // router object
 const router = express.Router();
@@ -18,5 +19,8 @@ router.get("/statistics", getStatisticsController);
 
 // GET bar-chart
 router.get("/bar-chart", getBarChartController);
+
+// GET pie-chart
+router.get("/pie-chart", getPieChartController);
 
 export default router;
