@@ -60,3 +60,4 @@ export const getStatisticsController = async (req, res) => {
         });
     }
 }
+
