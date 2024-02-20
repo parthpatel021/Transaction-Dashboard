@@ -2,19 +2,20 @@ import transactionModel from "../models/transactionModel.js";
 
 export const getStatisticsController = async (req, res) => {
     try {
-        const { targetMonth } = req.body;
+        const { targetMonth } = req.query;
         let args = {};
 
-        if (targetMonth) {
+        if(targetMonth){
+            const parsedTargetMonth = parseInt(targetMonth);
             // validation check
-            if(targetMonth < 1 || targetMonth > 12){
-                res.status(400).send({
+            if(isNaN(parsedTargetMonth) || parsedTargetMonth < 1 || parsedTargetMonth > 12){
+                return res.status(400).send({
                     success: false,
                     message: "Invalid Target Month"
                 });
             }
-            args= {
-                $expr: { $eq: [{ $month: { $toDate: "$dateOfSale" } }, targetMonth] }
+            args.$expr =  {
+                $eq: [{ $month: { $toDate: "$dateOfSale" } }, parsedTargetMonth]
             }
         }
 

@@ -2,25 +2,27 @@ import axios from "axios";
 
 export const getCombinedDataController = async (req,res) => {
     try {
-        const { targetMonth } = req.body;
+        const { targetMonth } = req.query;
         const reqData = {};
         if (targetMonth) {
+            const parsedTargetMonth = parseInt(targetMonth);
             // validation check
-            if(targetMonth < 1 || targetMonth > 12){
-                res.status(400).send({
+            // validation check
+            if(isNaN(parsedTargetMonth) || parsedTargetMonth < 1 || parsedTargetMonth > 12){
+                return res.status(400).send({
                     success: false,
                     message: "Invalid Target Month"
                 });
             }
-            reqData.targetMonth = targetMonth;
+            reqData.targetMonth = parsedTargetMonth;
         }
 
         // Fetch data from all three APIs using axios
         const serverURL = process.env.SERVER_URL;
         const [statisticsResponse, barChartResponse, pieChartResponse] = await Promise.all([
-            axios.get(`${serverURL}/statistics`, { data: { ...reqData } }),
-            axios.get(`${serverURL}/bar-chart`, { data: { ...reqData } }),
-            axios.get(`${serverURL}/pie-chart`, { data: { ...reqData } })
+            axios.get(`${serverURL}/statistics`, { params: { ...reqData } }),
+            axios.get(`${serverURL}/bar-chart`, { params: { ...reqData } }),
+            axios.get(`${serverURL}/pie-chart`, { params: { ...reqData } })
         ]);
 
         // Combine responses
