@@ -16,10 +16,11 @@ export const getCombinedDataController = async (req,res) => {
         }
 
         // Fetch data from all three APIs using axios
+        const serverURL = process.env.SERVER_URL;
         const [statisticsResponse, barChartResponse, pieChartResponse] = await Promise.all([
-            axios.get('http://localhost:8080/statistics', { data: { ...reqData } }),
-            axios.get('http://localhost:8080/bar-chart', { data: { ...reqData } }),
-            axios.get('http://localhost:8080/pie-chart', { data: { ...reqData } })
+            axios.get(`${serverURL}/statistics`, { data: { ...reqData } }),
+            axios.get(`${serverURL}/bar-chart`, { data: { ...reqData } }),
+            axios.get(`${serverURL}/pie-chart`, { data: { ...reqData } })
         ]);
 
         // Combine responses
