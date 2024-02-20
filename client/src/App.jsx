@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Inputs from "./components/Inputs";
 import axios from "axios";
-import TransactionTable from "./components/TransactionTable";
-import PageNavigation from "./components/PageNavigation";
+import TransactionTable from "./components/Table/TransactionTable";
+import PageNavigation from "./components/Table/PageNavigation";
+import Statistics from "./components/statisticComponents/Statistics";
 
 function App() {
     const [keyword, setKeyword] = useState("");
@@ -42,7 +43,7 @@ function App() {
 
             const updatedTransactions = res.data;
             
-            console.log(updatedTransactions);
+            // console.log(updatedTransactions);
             setTransactions([...updatedTransactions]);
         }
         updateTransactions();
@@ -59,6 +60,10 @@ function App() {
             <div className="my-5">
                 <TransactionTable transactions={transactions}/>
                 <PageNavigation page={page} setPage={setPage}/>
+            </div>
+
+            <div>
+                <Statistics targetMonth={targetMonth} />
             </div>
         </div>
     );

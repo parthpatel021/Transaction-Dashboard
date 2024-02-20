@@ -36,7 +36,7 @@ const Inputs = ({keyword, targetMonth, handleChange}) => {
                 onChange={handleChange}
             >
                 {options?.map(({month,value}) => {
-                    return <option value={value}>{month}</option>
+                    return <option key={value} value={value}>{month}</option>
                 })}
             </select>
         </div>
