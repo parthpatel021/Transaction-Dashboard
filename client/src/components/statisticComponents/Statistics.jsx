@@ -24,13 +24,13 @@ const Statistics = ({ targetMonth }) => {
             const updatedStats = res.data;
             setStats(updatedStats);
 
-            // console.log(updatedStats);
+            console.log(updatedStats);
         }
 
         getStatistics();
     }, [targetMonth])
     return (
-        <div className='my-10'>
+        <div className=''>
             <h4 className='font-bold text-2xl px-5'>
                 Statistics {targetMonth !== 0 ? `- ${month[targetMonth-1]}` : null}
             </h4>

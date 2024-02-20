@@ -1,7 +1,7 @@
 import React from 'react'
 import TableRow from './TableRow';
 
-const tableHeadContent = ["ID", "Title", "Discription", "Price", "Category", "Sold", "Image"];
+// const tableHeadContent = ["ID", "Title", "Discription", "Price", "Category", "Sold", "Image"];
 
 const TransactionTable = ({ transactions }) => {
   return (

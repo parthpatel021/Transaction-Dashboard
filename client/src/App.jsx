@@ -5,6 +5,7 @@ import axios from "axios";
 import TransactionTable from "./components/Table/TransactionTable";
 import PageNavigation from "./components/Table/PageNavigation";
 import Statistics from "./components/statisticComponents/Statistics";
+import BarChartStats from "./components/statisticComponents/BarChartStats";
 
 function App() {
     const [keyword, setKeyword] = useState("");
@@ -61,9 +62,9 @@ function App() {
                 <TransactionTable transactions={transactions}/>
                 <PageNavigation page={page} setPage={setPage}/>
             </div>
-
-            <div>
+            <div className="flex my-10">
                 <Statistics targetMonth={targetMonth} />
+                <BarChartStats targetMonth={targetMonth} />
             </div>
         </div>
     );
